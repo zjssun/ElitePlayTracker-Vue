@@ -1,42 +1,51 @@
-# ElitePlayTracker-Vue
+# Elite Play Tracker
 
-This template should help get you started developing with Vue 3 in Vite.
+<div align="center">
+  <a href="https://eptracker.pro/donk/" target='_blank'>
+    <img src="gitimage/ept_logo_light.png" style="width:280px">
+  </a>
+  <div><strong>Elite Play Tracker</strong> 是一个跟踪CS2职业选手(目前都是职业选手)在Faceit平台上每一场对局的部分数据的web项目,对局数据由它的后端 <a herf="https://github.com/zjssun/ElitePlay-Tracker-Express"><strike>ElitePlay-Tracker-Express</strike></a>👉<a herf="https://github.com/zjssun/api-hub">API-HUB</a>提供。</div>
+  <div><strong>Elite Play Tracker</strong> is a web project that tracks partial data from every Faceit match played by CS2 pros (currently all pros), provided by its backend, <a herf="https://github.com/zjssun/ElitePlay-Tracker-Express"><strike>ElitePlay-Tracker-Express</strike></a>👉<a herf="https://github.com/zjssun/api-hub">API-HUB</a>.</div>
+  <img src="gitimage/screenshot.png" style="width:500px">
+  <p>Screenshot of Elite Play Tracker</p>
+</div>
 
-## Recommended IDE Setup
+---
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 技术支持 | Tech Stack 🚀
 
-## Recommended Browser Setup
+![Vue 3React](https://img.shields.io/badge/Vue.js-4FC08D?logo=vue.js&style=flat) ![Vue Router](https://img.shields.io/badge/Vue_Router-42b883?logo=vue-router&style=flat) ![Lucide](https://img.shields.io/badge/Pinia-FF4F00?logo=pinia&style=flat) ![lucid](https://img.shields.io/badge/Lucide-FAB?logo=lucide&style=flat) ![react-i18next](https://img.shields.io/badge/react--i18next-dac296?logo=i18next&style=flat) ![Moment.js](https://img.shields.io/badge/Moment.js-D71F00?logo=momentjs&style=flat) ![Axios](https://img.shields.io/badge/Axios-5A29E4?logo=axios&style=flat) ![GSAP](https://img.shields.io/badge/GSAP-88CE02?logo=gsap&style=flat)
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+---
 
-## Type Support for `.vue` Imports in TS
+## 更新历史 | Update History 📜
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+**2026 年**
 
-## Customize configuration
+- 重React移植为vue3。
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## 部署到本地 | Deploy to Local
 
-## Project Setup
+1. 克隆仓库 *Clone Repo*
 
-```sh
+```
+git clone https://github.com/zjssun/ElitePlayTracker-React.git
+```
+
+2. 安装依赖 *Install Dependencies*
+
+```
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+3. 修改/src/utils/[api.ts](https://github.com/zjssun/ElitePlayTracker-React/blob/master/src/utils/api.ts)文件 *Modify the api.ts file*
 
-```sh
-npm run dev
+```js
+axios.defaults.baseURL = 'http://localhost:3000';//修改为你的后端地址 change to your backend address
 ```
 
-### Type-Check, Compile and Minify for Production
+4. 启动项目 *Start Project*
 
-```sh
-npm run build
+```
+npm run dev
 ```
