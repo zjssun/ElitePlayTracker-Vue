@@ -22,14 +22,15 @@
 
 **2026 年**
 
-- 重React移植为vue3。
+- 2026-02-06：从React移植为vue3。*Convert from React to Vue 3.*
+- 2026-02-07：优化 Header 组件的样式和功能；*Optimize the styles and functionality of the Header component.*
 
 ## 部署到本地 | Deploy to Local
 
 1. 克隆仓库 *Clone Repo*
 
 ```
-git clone https://github.com/zjssun/ElitePlayTracker-React.git
+git clone https://github.com/zjssun/ElitePlayTracker-Vue.git
 ```
 
 2. 安装依赖 *Install Dependencies*
@@ -49,3 +50,4 @@ axios.defaults.baseURL = 'http://localhost:3000';//修改为你的后端地址 c
 ```
 npm run dev
 ```
+

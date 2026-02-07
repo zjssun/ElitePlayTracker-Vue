@@ -32,38 +32,11 @@ const handleNoticeClose = () => {
   showNotice.value = false
 }
 
-const initAnalytics = () => {
-  const existingScript = document.querySelector(
-    'script[src="https://www.googletagmanager.com/gtag/js?id=G-CNLNVT7LF5"]'
-  )
-  if (!existingScript) {
-    const script1 = document.createElement('script')
-    script1.src = 'https://www.googletagmanager.com/gtag/js?id=G-CNLNVT7LF5'
-    script1.async = true
-    document.head.appendChild(script1)
-  }
-
-  const inlineScriptId = 'ga-gtag-inline'
-  if (!document.getElementById(inlineScriptId)) {
-    const script2 = document.createElement('script')
-    script2.id = inlineScriptId
-    script2.innerHTML = `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-CNLNVT7LF5');
-    `
-    document.head.appendChild(script2)
-  }
-}
-
 onMounted(() => {
   const noticed = localStorage.getItem('noticed')
   if (!noticed) {
     showNotice.value = true
   }
-
-  initAnalytics()
 
   const localDarkMode = localStorage.getItem('DarkMode')
   if (localDarkMode !== null) {
