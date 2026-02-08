@@ -6,6 +6,7 @@ import './assets/css/matchCard.css'
 import './assets/css/matchDate.css'
 import './assets/css/mtachArea.css'
 import './assets/css/notice.css'
+import './assets/css/about.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
