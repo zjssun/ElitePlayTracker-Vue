@@ -25,6 +25,7 @@
 - 2026-02-06：从React移植为vue3。*Convert from React to Vue 3.*
 - 2026-02-07：优化 Header 组件的样式和功能；*Optimize the styles and functionality of the Header component.*
 - 2026-02-09：添加"关于"页面，压缩资源文件。*Add an 'About' page and compress resource files.*
+- 2026-03-01：将主题模式、语言切换、公告状态等全局变量迁移到 Pinia 统一管理，并保留 localStorage 持久化。*Migrate global states (theme mode, language toggle, notice visibility) to Pinia with localStorage persistence.*
 
 ## 部署到本地 | Deploy to Local
 
