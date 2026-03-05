@@ -1,4 +1,4 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
@@ -13,24 +13,49 @@ const { t } = useI18n()
 
 const responseData = ref<Matchinfo[]>([])
 const loading = ref(true)
+const hasLoadedOnce = ref(false)
+const renderKey = ref(0)
+let requestId = 0
 
-const loadMatches = async () => {
-  loading.value = true
-  const player = String(route.params.player ?? '').toLowerCase()
+const loadMatches = async (player: string) => {
+  const currentRequestId = ++requestId
+  if (!hasLoadedOnce.value) {
+    loading.value = true
+  }
+
   try {
     const response = await getMatchByName(player)
+    if (currentRequestId !== requestId) {
+      return
+    }
     responseData.value = response.data.data
+    if (hasLoadedOnce.value) {
+      renderKey.value += 1
+    } else {
+      hasLoadedOnce.value = true
+    }
   } catch (error) {
+    if (currentRequestId !== requestId) {
+      return
+    }
     responseData.value = []
+    if (hasLoadedOnce.value) {
+      renderKey.value += 1
+    } else {
+      hasLoadedOnce.value = true
+    }
   } finally {
-    loading.value = false
+    if (currentRequestId === requestId) {
+      loading.value = false
+    }
   }
 }
 
 watch(
   () => route.params.player,
-  () => {
-    loadMatches()
+  (player) => {
+    const normalizedPlayer = String(player ?? '').toLowerCase()
+    loadMatches(normalizedPlayer)
   },
   { immediate: true }
 )
@@ -42,16 +67,23 @@ const timeListFromMatch = computed(
 </script>
 
 <template>
-  <div v-if="loading">Loading...</div>
-  <template v-else>
-    <div class="static">-{{ t('total') }}{{ responseData.length }}{{ t('totalResult') }}-</div>
-    <div class="match-container">
-      <template v-for="(time, index) in timeList" :key="time">
-        <MatchDate :time="time" />
-        <template v-for="(match, matchIndex) in timeListFromMatch[index]" :key="match.matchId || matchIndex">
-          <MatchCard :match="match" />
-        </template>
-      </template>
-    </div>
-  </template>
+  <div class="match-view-viewport">
+    <div v-if="loading">Loading...</div>
+    <Transition v-else name="match-content-slide" mode="out-in">
+      <div :key="renderKey" class="match-view-panel">
+        <div class="static">-{{ t('total') }}{{ responseData.length }}{{ t('totalResult') }}-</div>
+        <div class="match-container">
+          <template v-for="(time, index) in timeList" :key="time">
+            <MatchDate :time="time" />
+            <template
+              v-for="(match, matchIndex) in timeListFromMatch[index]"
+              :key="match.matchId || matchIndex"
+            >
+              <MatchCard :match="match" />
+            </template>
+          </template>
+        </div>
+      </div>
+    </Transition>
+  </div>
 </template>
