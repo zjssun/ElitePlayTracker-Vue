@@ -7,6 +7,31 @@
    font-weight:bold;
 }
 
+.match-view-viewport{
+   width: 100%;
+   overflow: hidden;
+}
+
+.match-view-panel{
+   width: 100%;
+}
+
+.match-content-slide-enter-active,
+.match-content-slide-leave-active{
+   transition: transform 0.35s ease, opacity 0.35s ease;
+   will-change: transform, opacity;
+}
+
+.match-content-slide-enter-from{
+   transform: translateX(72px);
+   opacity: 0;
+}
+
+.match-content-slide-leave-to{
+   transform: translateX(-72px);
+   opacity: 0;
+}
+
 .match-container{
    width: 100%;
    height: auto;          
