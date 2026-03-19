@@ -27,6 +27,7 @@
 - 2026-02-09：添加"关于"页面，压缩资源文件。*Add an 'About' page and compress resource files.*
 - 2026-03-01：将主题模式、语言切换、公告状态等全局变量迁移到 Pinia 统一管理，并保留 localStorage 持久化。*Migrate global states (theme mode, language toggle, notice visibility) to Pinia with localStorage persistence.*
 - 2026-03-05：新增 MatchView 路由切换动画（旧内容左移离场、新内容从右侧进入），并改为数据加载完成后触发；首次进入页面不触发动画。*Add MatchView route transition animation (old content exits left, new content enters from right), triggered only after data loading is complete; no animation on first page load.*
+- 2026-03-19：调整 Notice 公告逻辑，改为在代码设定的时间区间内每次打开网站都会弹出，超出时间区间则不再显示。*Update Notice behavior so it appears on every site visit within a code-defined time window, and stays hidden outside that range.*
 
 ## 部署到本地 | Deploy to Local
 

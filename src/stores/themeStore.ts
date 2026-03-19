@@ -5,12 +5,10 @@ type AppLanguage = 'zh' | 'en'
 
 const DARK_MODE_KEY = 'DarkMode'
 const LANGUAGE_KEY = 'Language'
-const NOTICE_KEY = 'noticed'
 
 export const useAppStore = defineStore('app', () => {
   const isDark = ref(false)
   const language = ref<AppLanguage>('zh')
-  const showNotice = ref(false)
   const isEnglish = computed(() => language.value === 'en')
 
   const init = () => {
@@ -27,8 +25,6 @@ export const useAppStore = defineStore('app', () => {
     } else {
       localStorage.setItem(LANGUAGE_KEY, language.value)
     }
-
-    showNotice.value = !localStorage.getItem(NOTICE_KEY)
   }
 
   const toggleTheme = () => {
@@ -41,20 +37,13 @@ export const useAppStore = defineStore('app', () => {
     localStorage.setItem(LANGUAGE_KEY, language.value)
   }
 
-  const dismissNotice = () => {
-    localStorage.setItem(NOTICE_KEY, 'true')
-    showNotice.value = false
-  }
-
   return {
     isDark,
     language,
     isEnglish,
-    showNotice,
     init,
     toggleTheme,
     toggleLanguage,
-    dismissNotice,
   }
 })
 

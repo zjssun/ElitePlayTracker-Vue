@@ -8,12 +8,8 @@ import Notice from '@/components/Notice.vue'
 import { useAppStore } from '@/stores/themeStore'
 
 const appStore = useAppStore()
-const { isDark, language, showNotice } = storeToRefs(appStore)
+const { isDark, language } = storeToRefs(appStore)
 const { locale } = useI18n()
-
-const handleNoticeClose = () => {
-  appStore.dismissNotice()
-}
 
 onMounted(() => {
   appStore.init()
@@ -31,7 +27,7 @@ watch(
 <template>
   <div :class="[isDark ? 'dark' : 'light', 'Home']">
     <div class="Body">
-      <Notice v-if="showNotice" :on-close="handleNoticeClose" />
+      <Notice />
       <Header />
       <MatchArea />
     </div>
