@@ -7,6 +7,7 @@ import './assets/css/matchDate.css'
 import './assets/css/mtachArea.css'
 import './assets/css/notice.css'
 import './assets/css/about.css'
+import 'lenis/dist/lenis.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
