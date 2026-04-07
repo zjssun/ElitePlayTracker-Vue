@@ -54,7 +54,7 @@ const openRoom = () => {
       <p><span>{{ t('TripleKills') }}:</span>{{ match.tripleKill }}</p>
       <p><span>{{ t('QuadroKills') }}:</span>{{ match.quadroKill }}</p>
       <p><span>{{ t('PentaKills') }}:</span>{{ match.pentaKill }}</p>
-      <p><span>{{ t('Assists') }}:</span>{{ match.totalAssistsl }}</p>
+      <p><span>{{ t('Assists') }}:</span>{{ match.totalAssists }}</p>
     </div>
   </div>
 </template>
