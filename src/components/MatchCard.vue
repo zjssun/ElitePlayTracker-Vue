@@ -1,12 +1,19 @@
 ﻿<script setup lang="ts">
+import { computed } from 'vue'
 import { Clock } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
 import type { Matchinfo } from '@/utils/modleType'
 import { RenderName, GetMapImg } from '@/utils/ToolBox'
 import { GetTime } from '@/utils/GetTime'
+import { getProAvatar } from '@/utils/proAvatars'
 
 const props = defineProps<{ match: Matchinfo }>()
 const { t } = useI18n()
+
+const splitPros = (value: string | null) => (value ? value.split(',').filter(Boolean) : [])
+const teammates = computed(() => splitPros(props.match.teammates))
+const opponents = computed(() => splitPros(props.match.opponents))
+const hasPros = computed(() => teammates.value.length > 0 || opponents.value.length > 0)
 
 const openRoom = () => {
   window.open(props.match.roomUrl, '_blank')
@@ -14,7 +21,7 @@ const openRoom = () => {
 </script>
 
 <template>
-  <div class="matchCardContainer" @click="openRoom">
+  <div class="matchCardContainer" :class="{ 'has-pros': hasPros }" @click="openRoom">
     <div class="matchCard-firstRow">
       <p>{{ RenderName(match.nickName) }}</p>
     </div>
@@ -55,6 +62,22 @@ const openRoom = () => {
       <p><span>{{ t('QuadroKills') }}:</span>{{ match.quadroKill }}</p>
       <p><span>{{ t('PentaKills') }}:</span>{{ match.pentaKill }}</p>
       <p><span>{{ t('Assists') }}:</span>{{ match.totalAssists }}</p>
+    </div>
+    <div v-if="hasPros" class="matchCard-pros">
+      <div v-if="teammates.length" class="pros-group">
+        <span class="pros-label">{{ t('teammates') }}</span>
+        <span v-for="player in teammates" :key="player" class="pro-tag">
+          <img v-if="getProAvatar(player)" class="pro-avatar" :src="getProAvatar(player)" :alt="player" />
+          <span class="pro-name">{{ player }}</span>
+        </span>
+      </div>
+      <div v-if="opponents.length" class="pros-group pros-group--opponents">
+        <span class="pros-label">{{ t('opponents') }}</span>
+        <span v-for="player in opponents" :key="player" class="pro-tag">
+          <img v-if="getProAvatar(player)" class="pro-avatar" :src="getProAvatar(player)" :alt="player" />
+          <span class="pro-name">{{ player }}</span>
+        </span>
+      </div>
     </div>
   </div>
 </template>

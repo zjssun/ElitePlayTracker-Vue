@@ -27,4 +27,12 @@ export interface Matchinfo {
   effectiveRanking: string
   mapimage: string
   adr: string
+  teammates: string | null
+  opponents: string | null
+}
+
+export interface VoteStat {
+  name: string
+  nameKey: string
+  votes: number
 }

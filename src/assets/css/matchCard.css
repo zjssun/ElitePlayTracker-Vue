@@ -192,6 +192,63 @@
    border-top-color: var(--card-border-color);
 }
 
+.matchCardContainer.has-pros{
+   height: 296px;
+   grid-template-rows: repeat(7, 1fr);
+}
+
+.matchCard-pros{
+   grid-column: span 3;
+   grid-row: span 1;
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 10px;
+   border-top: 2px solid var(--card-border-color);
+   padding-top: 6px;
+   min-width: 0;
+}
+
+.pros-group{
+   display: flex;
+   align-items: center;
+   gap: 6px;
+   min-width: 0;
+   overflow: hidden;
+}
+
+.pros-group--opponents{
+   justify-content: flex-end;
+}
+
+.pros-label{
+   font-size: var(--tiny-size);
+   font-weight: 700;
+   flex-shrink: 0;
+}
+
+.pro-tag{
+   display: inline-flex;
+   align-items: center;
+   gap: 4px;
+   padding: 2px 8px 2px 2px;
+   border: 2px solid var(--card-border-color);
+   border-radius: 999px;
+   background: var(--background);
+   font-size: var(--tiny-size);
+   font-weight: 700;
+   white-space: nowrap;
+   flex-shrink: 0;
+}
+
+.pro-avatar{
+   width: 20px;
+   height: 20px;
+   border-radius: 50%;
+   object-fit: cover;
+}
+
 @media (max-width:1440px){
    .matchCardContainer{
       width: 65%;
@@ -294,6 +351,15 @@
       padding-left: 8px;
       padding-right: 8px;
       gap: 8px;
+   }
+   .matchCardContainer.has-pros{
+      height: 425px;
+      grid-template-rows: repeat(9, 1fr);
+   }
+   .matchCard-pros{
+      grid-column: span 6;
+      grid-row: span 1;
+      padding-top: 4px;
    }
 }
 

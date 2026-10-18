@@ -1,27 +1,27 @@
-﻿import donk from '@/assets/img/donk.webp'
-import elige from '@/assets/img/elige.webp'
-import im from '@/assets/img/im.webp'
-import jl from '@/assets/img/jl.webp'
-import m0nesy from '@/assets/img/m0nesy.webp'
-import niko from '@/assets/img/niko.webp'
-import ropz from '@/assets/img/ropz.webp'
-import s1mple from '@/assets/img/s1mple.webp'
-import w0nderful from '@/assets/img/w0nderful.webp'
-import zywoo from '@/assets/img/zywoo.webp'
-import twistzz from '@/assets/img/Twistzz.webp'
-import kyousuke from '@/assets/img/kyousuke.webp'
-import frozen from '@/assets/img/forzen.webp'
-import boros from '@/assets/img/BOROS.webp'
+﻿import donk from '@/assets/img/player/donk.webp'
+import elige from '@/assets/img/player/elige.webp'
+import im from '@/assets/img/player/im.webp'
+import jl from '@/assets/img/player/jl.webp'
+import m0nesy from '@/assets/img/player/m0nesy.webp'
+import niko from '@/assets/img/player/niko.webp'
+import ropz from '@/assets/img/player/ropz.webp'
+import s1mple from '@/assets/img/player/s1mple.webp'
+import w0nderful from '@/assets/img/player/w0nderful.webp'
+import zywoo from '@/assets/img/player/zywoo.webp'
+import twistzz from '@/assets/img/player/Twistzz.webp'
+import kyousuke from '@/assets/img/player/kyousuke.webp'
+import frozen from '@/assets/img/player/forzen.webp'
 
-import dust2 from '@/assets/img/dust2.jpeg'
-import mirage from '@/assets/img/Mirage.jpeg'
-import inferno from '@/assets/img/inferno.jpeg'
-import nuke from '@/assets/img/nuke.jpeg'
-import vertigo from '@/assets/img/Vertigo.jpeg'
-import ancient from '@/assets/img/ancient.jpeg'
-import anubis from '@/assets/img/Anubis.jpeg'
-import train from '@/assets/img/train.png'
-import overpass from '@/assets/img/overpass.jpeg'
+import dust2 from '@/assets/img/map/dust2.jpeg'
+import mirage from '@/assets/img/map/Mirage.jpeg'
+import inferno from '@/assets/img/map/inferno.jpeg'
+import nuke from '@/assets/img/map/nuke.jpeg'
+import vertigo from '@/assets/img/map/Vertigo.jpeg'
+import ancient from '@/assets/img/map/ancient.jpeg'
+import anubis from '@/assets/img/map/Anubis.jpeg'
+import train from '@/assets/img/map/train.png'
+import overpass from '@/assets/img/map/overpass.jpeg'
+import cache from '@/assets/img/map/cache.jpeg'
 
 export const playerList = [
   'donk',
@@ -37,7 +37,6 @@ export const playerList = [
   'Twistzz',
   'w0nderful',
   'ZywOo',
-  'BOROS',
 ]
 
 export function GetPlayerImg(Player: string) {
@@ -70,8 +69,6 @@ export function GetPlayerImg(Player: string) {
       return twistzz
     case 'frozen':
       return frozen
-    case 'BOROS':
-      return boros
     default:
       return ''
   }
@@ -101,6 +98,8 @@ export function GetMapImg(map: string) {
       return train
     case 'de_overpass':
       return overpass
+    case 'de_cache':
+      return cache
     default:
       return ''
   }

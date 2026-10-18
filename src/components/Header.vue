@@ -1,17 +1,20 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useI18n } from 'vue-i18n'
-import { RouterLink } from 'vue-router'
-import logoDark from '@/assets/img/ept_logo_dark.png'
-import logoLight from '@/assets/img/ept_logo_light.png'
+import { RouterLink, useRoute } from 'vue-router'
+import logoDark from '@/assets/img/logo/ept_logo_dark.png'
+import logoLight from '@/assets/img/logo/ept_logo_light.png'
 import { Sun, Moon, Menu, X } from 'lucide-vue-next'
 import { useAppStore } from '@/stores/themeStore'
 
 const isMenuOpen = ref(false)
 const { t } = useI18n()
+const route = useRoute()
 const appStore = useAppStore()
 const { isDark, isEnglish } = storeToRefs(appStore)
+
+const aboutLink = computed(() => (route.path === '/about' ? '/donk' : '/about'))
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
@@ -39,8 +42,8 @@ const changeLanguage = () => {
     <div class="header-actions" :class="{ open: isMenuOpen }" id="header-menu">
       <RouterLink
         class="header-link"
-        to="/about"
-        active-class="header-link--active"
+        :to="aboutLink"
+        :class="{ 'header-link--active': route.path === '/about' }"
         @click="closeMenu"
       >
         {{ t('about') }}
