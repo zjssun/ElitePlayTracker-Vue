@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, nextTick, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { X } from 'lucide-vue-next'
 import { getVoteStats, voteForPlayer } from '@/utils/api'
@@ -24,12 +24,36 @@ const votedNames = ref<string[]>(
   })()
 )
 
+const statsContainer = ref<HTMLElement | null>(null)
 const maxVotes = computed(() => Math.max(1, ...stats.value.map((s) => s.votes)))
+const NAME_SCROLL_GAP = 12
+
+const updateNameScroll = () => {
+  nextTick(() => {
+    statsContainer.value
+      ?.querySelectorAll<HTMLElement>('.vote-name-text')
+      .forEach((el) => {
+        const parent = el.parentElement
+        if (!parent) {
+          return
+        }
+        const overflow = el.scrollWidth - parent.clientWidth
+        if (overflow > 0) {
+          el.classList.add('scrolling')
+          el.style.setProperty('--scroll-dist', `${-(overflow + NAME_SCROLL_GAP)}px`)
+        } else {
+          el.classList.remove('scrolling')
+          el.style.removeProperty('--scroll-dist')
+        }
+      })
+  })
+}
 
 const loadStats = async () => {
   try {
     const response = await getVoteStats()
     stats.value = response.data.data ?? []
+    updateNameScroll()
   } catch {
     stats.value = []
   }
@@ -88,10 +112,10 @@ onMounted(loadStats)
       </div>
       <p v-if="errorMsg" class="vote-error">{{ errorMsg }}</p>
 
-      <div class="vote-stats" data-lenis-prevent>
+      <div ref="statsContainer" class="vote-stats" data-lenis-prevent>
         <p v-if="!stats.length" class="vote-empty">{{ t('voteEmpty') }}</p>
         <div v-for="(stat, index) in stats" :key="stat.nameKey" class="vote-row">
-          <span class="vote-name">{{ stat.name }}</span>
+          <span class="vote-name"><span class="vote-name-text">{{ stat.name }}</span></span>
           <div class="vote-bar-wrap">
             <div
               class="vote-bar"

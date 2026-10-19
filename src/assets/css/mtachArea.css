@@ -241,6 +241,10 @@
    background: var(--navlink-hover-color);
 }
 
+.vote-panel,
+.vote-panel * {
+   user-select: text;
+}
 .vote-input-row {
    display: flex;
    gap: 8px;
@@ -302,8 +306,18 @@
    font-weight: 600;
    font-size: var(--small-size);
    overflow: hidden;
-   text-overflow: ellipsis;
    white-space: nowrap;
+}
+.vote-name-text {
+   display: inline-block;
+   white-space: nowrap;
+}
+.vote-name-text.scrolling {
+   animation: voteNameScroll 4s ease-in-out infinite alternate;
+}
+@keyframes voteNameScroll {
+   0%, 15% { transform: translateX(0); }
+   85%, 100% { transform: translateX(var(--scroll-dist, 0)); }
 }
 .vote-bar-wrap {
    flex: 1;
