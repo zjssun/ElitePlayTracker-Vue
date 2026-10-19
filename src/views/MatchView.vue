@@ -68,7 +68,7 @@ const timeListFromMatch = computed(
 
 <template>
   <div class="match-view-viewport">
-    <div v-if="loading">Loading...</div>
+    <div v-if="loading" class="match-loading">Loading...</div>
     <Transition v-else name="match-content-slide" mode="out-in">
       <div :key="renderKey" class="match-view-panel">
         <div class="static">-{{ t('total') }}{{ responseData.length }}{{ t('totalResult') }}-</div>

@@ -12,6 +12,13 @@
    overflow: hidden;
 }
 
+.match-loading{
+   text-align: center;
+   font-size: var(--base-size);
+   font-weight: bold;
+   color: var(--text);
+}
+
 .match-view-panel{
    width: 100%;
 }
