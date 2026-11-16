@@ -72,7 +72,11 @@ const submitVote = async () => {
   submitting.value = true
   errorMsg.value = ''
   try {
-    await voteForPlayer(trimmed)
+    const response = await voteForPlayer(trimmed)
+    if (response?.data?.status !== 'success') {
+      errorMsg.value = response?.data?.info || t('voteFailed')
+      return
+    }
     votedNames.value = [...votedNames.value, key]
     localStorage.setItem(VOTED_KEY, JSON.stringify(votedNames.value))
     name.value = ''

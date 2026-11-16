@@ -24,6 +24,8 @@
 
 - 2026-11-16：比赛卡片中的职业选手标签支持点击，新窗口打开其 FACEIT 主页。
   *Pro player tags in match cards are now clickable, opening the player's FACEIT profile in a new tab.*
+   投票接入服务端敏感词校验，提交被拦截时展示后端返回的拒绝原因；同时修复后端返回错误响应时前端误记为"已投票"的问题。
+  *Voting submissions are now checked against the server's sensitive-word filter and display the returned rejection message; also fixed a bug where rejected votes were still marked as cast.*
 - 2026-02-06：从React移植为vue3。
   *Convert from React to Vue 3.*
 - 2026-02-07：优化 Header 组件的样式和功能；
