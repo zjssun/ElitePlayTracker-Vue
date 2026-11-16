@@ -22,6 +22,8 @@
 
 **2026 年**
 
+- 2026-11-16：比赛卡片中的职业选手标签支持点击，新窗口打开其 FACEIT 主页。
+  *Pro player tags in match cards are now clickable, opening the player's FACEIT profile in a new tab.*
 - 2026-02-06：从React移植为vue3。
   *Convert from React to Vue 3.*
 - 2026-02-07：优化 Header 组件的样式和功能；

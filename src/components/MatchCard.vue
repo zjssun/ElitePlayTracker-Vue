@@ -6,6 +6,7 @@ import type { Matchinfo } from '@/utils/modleType'
 import { RenderName, GetMapImg } from '@/utils/ToolBox'
 import { GetTime } from '@/utils/GetTime'
 import { getProAvatar } from '@/utils/proAvatars'
+import { getProFaceitUrl } from '@/utils/api'
 
 const props = defineProps<{ match: Matchinfo }>()
 const { t } = useI18n()
@@ -17,6 +18,21 @@ const hasPros = computed(() => teammates.value.length > 0 || opponents.value.len
 
 const openRoom = () => {
   window.open(props.match.roomUrl, '_blank')
+}
+
+const openProProfile = async (name: string) => {
+  const win = window.open('', '_blank')
+  try {
+    const response = await getProFaceitUrl(name)
+    const url = response?.data?.status === 'success' ? response.data.data : null
+    if (win && url) {
+      win.location.href = url
+    } else {
+      win?.close()
+    }
+  } catch {
+    win?.close()
+  }
 }
 </script>
 
@@ -66,14 +82,14 @@ const openRoom = () => {
     <div v-if="hasPros" class="matchCard-pros">
       <div v-if="teammates.length" class="pros-group">
         <span class="pros-label">{{ t('teammates') }}</span>
-        <span v-for="player in teammates" :key="player" class="pro-tag">
+        <span v-for="player in teammates" :key="player" class="pro-tag" @click.stop="openProProfile(player)">
           <img v-if="getProAvatar(player)" class="pro-avatar" :src="getProAvatar(player)" :alt="player" />
           <span class="pro-name">{{ player }}</span>
         </span>
       </div>
       <div v-if="opponents.length" class="pros-group pros-group--opponents">
         <span class="pros-label">{{ t('opponents') }}</span>
-        <span v-for="player in opponents" :key="player" class="pro-tag">
+        <span v-for="player in opponents" :key="player" class="pro-tag" @click.stop="openProProfile(player)">
           <img v-if="getProAvatar(player)" class="pro-avatar" :src="getProAvatar(player)" :alt="player" />
           <span class="pro-name">{{ player }}</span>
         </span>

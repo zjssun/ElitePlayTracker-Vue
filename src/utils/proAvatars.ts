@@ -77,6 +77,11 @@ const PRO_AVATAR_FILE: Record<string, string> = {
   'kyousuke': 'kyousuke.webp',
   'Twistzz': 'Twistzz.webp',
   'frozen': 'forzen.webp',
+  'dem0n': 'dem0n.webp',
+  'SunPayus': 'SunPayus.webp',
+  'xfl0ud': 'xfl0ud.webp',
+  'Krabeni': 'Krabeni.webp',
+  'dziugss': 'dziugss.webp',
 }
 
 export function getProAvatar(name: string): string {
